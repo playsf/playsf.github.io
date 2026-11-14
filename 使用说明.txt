@@ -1,0 +1,69 @@
+传奇新开服发布网 · 静态站点程序说明
+==========================================
+
+一、文件结构（全部平铺在根目录，与 index.html 同级）
+  index.html            首页（开服表 + 最新文章 + 栏目导航 + 20 张版本图鉴 + 选服指南/FAQ）
+  kf.html               栏目页：开服表（20 篇）
+  gl.html               栏目页：游戏攻略（20 篇）
+  zy.html               栏目页：职业玩法（20 篇）
+  bb.html               栏目页：版本大全（20 篇）
+  xd.html               栏目页：玩家心得（20 篇）
+  kf-1.html ... kf-20.html   开服表文章（kf-1 到 kf-20）
+  gl-1.html ... gl-20.html   攻略文章
+  zy-1.html ... zy-20.html   职业文章
+  bb-1.html ... bb-20.html   版本文章
+  xd-1.html ... xd-20.html   心得文章
+  about.html            关于本站（内容原则 / 免责声明 / 联系方式）
+  404.html              自定义错误页（GitHub Pages 自动识别）
+  sitemap.html          HTML 站点地图（按栏目列出全部文章标题与日期，给用户和爬虫用的入口页）
+  sitemap.xml           站点地图（108 条 URL）
+  robots.txt             robots 规则（指向 sitemap）
+  favicon.svg           站点图标
+  img1.jpg ... img20.jpg  20 张 126×126 图片（占位图，请自行替换）
+
+  共 109 个 HTML 页面、100 篇文章（每篇正文约 900~1180 字，含导语、分节正文与小结）。
+  版式按 1440×900 视口调校：首页、栏目页、文章页的高度都控制在 2.5 屏（约 2250px）以内，
+  打开即是一屏半到两屏半的完整内容，不需要长距离滚动；手机端自动转为单列排布。
+
+二、部署到 playsf.github.io
+  1. 在 GitHub 新建仓库，仓库名必须是 playsf.github.io（用户名是 playsf）。
+  2. 把本目录下所有文件直接上传到仓库根目录（不要建子文件夹，保持平级）。
+  3. 仓库 Settings → Pages → Build and deployment：Source 选 Deploy from a branch，
+     Branch 选 main、目录选 /(root)，保存。
+  4. 等 1~2 分钟，访问 https://playsf.github.io/ 即可。
+  5. 若是普通仓库（非 playsf.github.io），站点地址会变成
+     https://playsf.github.io/<仓库名>/，此时需把全站相对链接改为子目录形式，建议直接用
+     playsf.github.io 仓库最省事。
+
+三、替换图片
+  · 准备 20 张 126×126 的正方形图片（jpg），按顺序命名为 img1.jpg ~ img20.jpg，
+    覆盖根目录同名文件即可，无需改任何代码。
+  · 图片出现在：首页图鉴（20 张）、各栏目列表缩略图、文章页右上角配图。
+  · 想换图注文案，可在 index.html 里搜索 “figcaption” 修改对应文字。
+
+四、修改域名 / 站点信息
+  · 全站 canonical、og:url、JSON-LD、sitemap.xml、robots.txt 中的域名均为
+    https://playsf.github.io/，如换域名请全局替换这一串。
+  · 站点名“传奇新开服发布网”出现在每页 header、footer 与 title 中，可全局替换。
+
+五、SEO 说明（已内置）
+  · 每页独立 title / description（控制在 80 字内，避免被搜索结果截断）/ keywords、canonical、og 标签；
+  · 语义化结构：每页唯一 h1，正文 h2 分节，面包屑导航，图片带 alt；
+  · 结构化数据：首页 WebSite，栏目页 CollectionPage，文章页 Article + BreadcrumbList；
+  · sitemap.xml + sitemap.html + robots.txt 已生成，可直接提交到百度搜索资源平台、
+    360 站长平台、必应 Webmaster Tools；
+  · 全站内链互通（首页 ↔ 栏目 ↔ 文章 ↔ 相关阅读 4 条 ↔ 上下篇 ↔ 站点地图），移动端自适应；
+  · 同栏目内的 100 篇文章由 17~21 个章节轮换组合生成，两两文本重合度控制在 0.1~0.3，
+    避免被判为采集或镜像内容；每篇仍有独立导语、独立关键词与独立标题。
+  · 建议上线后做的三件事：提交 sitemap；在三个站长平台验证站点；保持每周新增 2~3 篇
+    文章并同步更新栏目页与 sitemap 的 lastmod。
+
+六、新增一篇文章的做法
+  1. 复制同栏目任意一篇文章（如 gl-20.html），重命名为 gl-21.html；
+  2. 替换 title、description、h1、正文与面包屑中的关键词；
+  3. 在 gl.html 列表里加一条 <article class="art">…</article>；
+  4. 在 sitemap.xml 里加一条 <url>，lastmod 改成当天日期。
+
+七、说明
+  本站为资讯与攻略类静态站点，不含后台、数据库与任何下载/充值入口；
+  内容中的版本名、区服名与时间为示意写法，请按实际公告核对后再发布。
